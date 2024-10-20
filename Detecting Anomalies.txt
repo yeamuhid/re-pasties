@@ -1,0 +1,13 @@
+def detect_anomalies(autoencoder, images, threshold=0.01):
+    reconstructions = autoencoder.predict(images)
+    loss = np.mean(np.abs(reconstructions - images), axis=(1, 2, 3))
+    anomalies = loss > threshold
+    return anomalies, loss
+
+# Test the model with unseen data
+test_images = np.array([...])  # Load your test images here
+anomalies, loss = detect_anomalies(autoencoder, test_images)
+
+# Output results
+for i, is_anomaly in enumerate(anomalies):
+    print(f"Image {i}: {'Anomaly' if is_anomaly else 'Normal'} (Loss: {loss[i]})")

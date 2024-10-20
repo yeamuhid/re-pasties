@@ -1,0 +1,9 @@
+import pandas as pd
+
+# Sample DataFrame
+data = {'Category': ['A', 'B', 'A', 'C', 'B', 'C']}
+df = pd.DataFrame(data)
+
+# Create dummy variables
+dummy_df = pd.get_dummies(df, drop_first=True)  # drop_first=True to avoid multicollinearity
+print(dummy_df)
